@@ -40,7 +40,7 @@ const GetData = async ({
 
 
 
-      if (response?.status === 200) return resolve(response.data);
+      if (response?.status === 200) return resolve(response);
 
       const status = response?.response?.status;
       if (status === 400 || status === 403) return resolve(response);
