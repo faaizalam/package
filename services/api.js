@@ -19,44 +19,32 @@ const GetData = async ({
         .get(
           url,
           {
-            method: "GET",
+
             httpsAgent: _proxyAgent,
 
             headers: headerArgs,
-            signal:abortController.signal 
+            signal: abortController.signal
           },
-          
+
         )
-        .then((x) => {
-          clearTimeout(timeout);
-          return x;
-        })
+
         .catch((e) => {
-          return e;
-        });
+          return e
+
+        }).finally(() => clearTimeout(timeout));
 
 
 
-      if (
-        response?.response?.status === 403 ||
-        response?.response?.status === 400
-      ) {
-
-
-        return resolve(response);
-      }
 
 
 
-      if (response.status) {
-        if (response.status == 200) {
-          return resolve(response.data);
-        } else if (response.status == 403 || response.status == 400) {
-           return resolve(false);
-        }
-      }
 
+      if (response?.status === 200) return resolve(response.data);
 
+      const status = response?.response?.status;
+      if (status === 400 || status === 403) return resolve(false);
+
+      return reject(response)
 
     } catch (e) {
 
