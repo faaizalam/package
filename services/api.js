@@ -20,7 +20,7 @@ const GetData = async ({
           url,
           {
 
-            httpsAgent: GetProxy(_proxyAgent),
+            httpsAgent: _proxyAgent,
 
             headers: headerArgs,
             signal: abortController.signal
