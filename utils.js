@@ -32,7 +32,7 @@ class Headers {
                 "Tmps-Correlation-Id":"94d9088f-3a47-4b6e-bea5-581f836fa3af",
                 Origin: origin,
                 Referer: referer,
-                Cookie: args.cookie,
+                Cookie: args._cookieData.cookie,
                 ...(args.event?.["X-Tmpssmartqueuetoken"] && {
                     "X-Tmpssmartqueuetoken":
                         args.event["X-Tmpssmartqueuetoken"],

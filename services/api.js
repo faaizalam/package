@@ -10,6 +10,7 @@ const GetData = async ({
   return new Promise(async (resolve, reject) => {
     try {
       const { url, ...headerArgs } = new Headers(headersName, { event, _cookieData }).getHeaders();
+      console.log(headerArgs);
       let abortController = new AbortController();
       const timeout = setTimeout(() => {
         abortController.abort();
@@ -42,7 +43,7 @@ const GetData = async ({
       if (response?.status === 200) return resolve(response.data);
 
       const status = response?.response?.status;
-      if (status === 400 || status === 403) return resolve(false);
+      if (status === 400 || status === 403) return resolve(response);
 
       return reject(response)
 
