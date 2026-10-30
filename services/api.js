@@ -1,5 +1,10 @@
 const Headers = require("../utils");
 const axios = require("axios");
+const { HttpsProxyAgent } = require("https-proxy-agent");
+const GetProxy = (proxyURL) => {
+  const proxyAgent = new HttpsProxyAgent(proxyURL);
+  return proxyAgent;
+};
 const GetData = async ({
   headersName,
   event,
@@ -20,7 +25,7 @@ const GetData = async ({
           url,
           {
 
-            httpsAgent: _proxyAgent,
+            httpsAgent: GetProxy(_proxyAgent.proxy),
 
             headers: headerArgs,
             signal: abortController.signal
