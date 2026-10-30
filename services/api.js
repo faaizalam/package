@@ -10,7 +10,7 @@ const GetData = async ({
   return new Promise(async (resolve, reject) => {
     try {
       const { url, ...headerArgs } = new Headers(headersName, { event, _cookieData }).getHeaders();
-      console.log(headerArgs);
+      
       let abortController = new AbortController();
       const timeout = setTimeout(() => {
         abortController.abort();
